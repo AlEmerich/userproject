@@ -7,6 +7,8 @@
 
 ## Documation
 
+There is postman collection at the root of this repo called `Technical test.postman_collection.json`
+
 + Create a user: 
   + Url: http://localhost:8080/users
   + Method: PUT
