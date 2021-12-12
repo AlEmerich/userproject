@@ -1,0 +1,15 @@
+spring:
+  jackson.date-format: dd/MM/yyyy
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: update
+  mvc:
+    format:
+      date: dd/MM/yyyy
+      date-time: dd/MM/yyyy HH:mm:ss
+      time: HH:mm:ss
