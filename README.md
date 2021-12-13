@@ -40,3 +40,10 @@ There is postman collection at the root of this repo called `Technical test.post
 "sexe": "MALE"
 }
 ```
+
+## To do
+
++ Integrate Swagger.
++ Improve the exception management.
++ Add tests on repository and service layer.
++ Adding better logging management.
