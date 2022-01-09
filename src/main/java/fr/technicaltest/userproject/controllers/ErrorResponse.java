@@ -1,13 +1,14 @@
 package fr.technicaltest.userproject.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
-@Builder
+@Builder(toBuilder = true)
 @Getter
 @Setter
 public class ErrorResponse {
@@ -18,6 +19,5 @@ public class ErrorResponse {
 
     private String message;
 
-    @Builder.Default
-    private Map<String, String> extra = new HashMap<>();
+    private Map<String, String> extra;
 }

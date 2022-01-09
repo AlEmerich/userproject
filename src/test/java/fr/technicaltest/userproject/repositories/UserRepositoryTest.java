@@ -27,7 +27,7 @@ class UserRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
-    private UserEntity mockUser = UserEntity.builder()
+    private final UserEntity mockUser = UserEntity.builder()
             .username("test")
             .birthday(Date.from(
                     LocalDate.of(1997, 1, 15)

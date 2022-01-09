@@ -8,13 +8,9 @@ import fr.technicaltest.userproject.exceptions.BusinessException;
 import fr.technicaltest.userproject.repositories.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
@@ -36,7 +32,7 @@ class UserServiceTest {
     @MockBean
     private UserRepository userRepository;
 
-    private UserEntity mockUser = UserEntity.builder()
+    private final UserEntity mockUser = UserEntity.builder()
             .id(1L)
             .username("test")
             .birthday(Date.from(

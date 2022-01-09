@@ -1,7 +1,6 @@
 package fr.technicaltest.userproject.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import fr.technicaltest.userproject.enums.Gender;
 import lombok.Builder;
 
 import java.util.Date;

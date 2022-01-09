@@ -14,10 +14,11 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user")
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserEntity implements Serializable {
+
     @Id
     @Column(nullable = false)
     @GeneratedValue

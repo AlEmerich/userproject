@@ -15,7 +15,7 @@ Swagger UI is also accessible via `<host>/swagger-ui/index.html`.
   + Url: http://localhost:8080/users
   + Method: PUT
   + Response: 201 Created. Location of the user in the header.
-  + paypload:
+  + payload:
 ```json
 {
   "username": "string",

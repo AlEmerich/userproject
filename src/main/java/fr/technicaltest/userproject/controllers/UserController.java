@@ -27,7 +27,7 @@ public class UserController {
         try {
             return ResponseEntity.created(new URI("/users/" + id)).build();
         } catch (URISyntaxException e) {
-            throw new BusinessException("Error occured during the user creation: id equal to " + id);
+            throw new BusinessException("Error occurred during the user creation: id equal to " + id);
         }
     }
 
