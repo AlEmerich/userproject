@@ -5,9 +5,11 @@
 + Set the JAVA_HOME property to a valid JAVA 11+ location.
 + launch: `./gradlew bootRun`
 
-## Documation
+## Documentation
 
-There is postman collection at the root of this repo called `Technical test.postman_collection.json`
+There is postman collection at the root of this repo called `Technical test.postman_collection.json`.
+
+Swagger UI is also accessible via `<host>/swagger-ui/index.html`.
 
 + Create a user: 
   + Url: http://localhost:8080/users
@@ -40,10 +42,3 @@ There is postman collection at the root of this repo called `Technical test.post
 "sexe": "MALE"
 }
 ```
-
-## To do
-
-+ Integrate Swagger.
-+ Improve the exception management.
-+ Add tests on repository and service layer.
-+ Adding better logging management.

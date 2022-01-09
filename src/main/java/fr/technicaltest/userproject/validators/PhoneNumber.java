@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface PhoneNumber {
 
-    String message() default "{PhoneNumber.invalid}";
+    String message() default "Phone number is not in a valid format (ex: 00 00 00 00 00)";
 
     Class<?>[] groups() default { };
 

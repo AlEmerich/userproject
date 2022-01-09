@@ -2,16 +2,22 @@ package fr.technicaltest.userproject.entities;
 
 import fr.technicaltest.userproject.enums.Gender;
 import fr.technicaltest.userproject.validators.PhoneNumber;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "user")
-public class UserEntity {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserEntity implements Serializable {
     @Id
     @Column(nullable = false)
     @GeneratedValue
@@ -21,6 +27,7 @@ public class UserEntity {
 
     @Column(nullable = false)
     @NotNull
+    @NotBlank
     private String username;
 
     @Column(nullable = false)
@@ -38,10 +45,8 @@ public class UserEntity {
 
     @Column
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Gender sexe = Gender.UNDEFINED;
-
-    public UserEntity() {
-    }
 
     public Long getId() {
         return id;

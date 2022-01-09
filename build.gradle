@@ -16,13 +16,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.springframework:spring-webmvc'
-	implementation 'junit:junit:4.13.1'
-	implementation 'junit:junit:4.13.1'
+	implementation 'junit:junit:4.13.2'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.3'
+
 	runtimeOnly 'com.h2database:h2'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	compileOnly 'org.projectlombok:lombok:1.18.22'
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
 
 test {

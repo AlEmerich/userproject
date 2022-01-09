@@ -13,6 +13,10 @@ public class PhoneValidator implements ConstraintValidator<PhoneNumber, String> 
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
+        if(value == null) {
+            return true;
+        }
+
         Pattern pattern =
                 Pattern.compile("^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$");
         Matcher matcher = pattern.matcher(value);

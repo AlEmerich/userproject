@@ -33,15 +33,6 @@ public class UserService {
         } else {
             throw new BusinessException("The birth date is mandatory");
         }
-
-        if(userEntity.getPhone() != null) {
-            Pattern pattern =
-                    Pattern.compile("^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$");
-            Matcher matcher = pattern.matcher(userEntity.getPhone());
-            if(!matcher.matches()) {
-                throw new BusinessException("Phone is not in the right format (ex: 06 00 00 00 00)");
-            }
-        }
     }
 
     @Transactional

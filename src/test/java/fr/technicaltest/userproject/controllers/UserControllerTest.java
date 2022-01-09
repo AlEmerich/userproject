@@ -1,14 +1,17 @@
-package fr.technicaltest.userproject.services;
+package fr.technicaltest.userproject.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.technicaltest.userproject.controllers.UserController;
 import fr.technicaltest.userproject.dtos.CreateUserDto;
 import fr.technicaltest.userproject.dtos.GetUserDto;
 import fr.technicaltest.userproject.enums.Gender;
+import fr.technicaltest.userproject.exceptions.BusinessException;
+import fr.technicaltest.userproject.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -38,7 +41,7 @@ class UserControllerTest {
     ObjectMapper mapper = new ObjectMapper();
 
     @Test
-    void testCreate() throws Exception {
+    void create_shouldSucceed() throws Exception {
         Long id = 1L;
 
         Date dob =  Date.from(LocalDate.of(1992, 9, 8).atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -59,7 +62,23 @@ class UserControllerTest {
     }
 
     @Test
-    void testGet() throws Exception{
+    void create_shouldFailedBadPayload() throws Exception {
+        Long id = 1L;
+
+        Date dob =  Date.from(LocalDate.of(1992, 9, 8).atStartOfDay(ZoneId.systemDefault()).toInstant());
+        CreateUserDto userDto = CreateUserDto.builder()
+                .build();
+
+        when(service.create(any(CreateUserDto.class))).thenThrow(new BusinessException("Exception in service"));
+
+        mockMvc.perform(put("/users")
+                        .content(mapper.writeValueAsString(userDto))
+                        .contentType(MediaType.APPLICATION_JSON)
+                ).andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    void get_shouldSucceed() throws Exception{
         Long id = 1L;
 
         Date dob =  Date.from(LocalDate.of(1992, 9, 8).atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -80,7 +99,7 @@ class UserControllerTest {
     }
 
     @Test
-    void testGetNotOk() throws Exception{
+    void get_shouldFailed() throws Exception{
         Long id = 1L;
 
         Date dob =  Date.from(LocalDate.of(1992, 9, 8).atStartOfDay(ZoneId.systemDefault()).toInstant());
