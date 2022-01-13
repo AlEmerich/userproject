@@ -1,7 +1,6 @@
 package fr.technicaltest.userproject.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.technicaltest.userproject.controllers.UserController;
 import fr.technicaltest.userproject.dtos.CreateUserDto;
 import fr.technicaltest.userproject.dtos.GetUserDto;
 import fr.technicaltest.userproject.enums.Gender;
@@ -22,8 +21,7 @@ import java.util.Date;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -52,7 +50,7 @@ class UserControllerTest {
 
         when(service.create(any(CreateUserDto.class))).thenReturn(id);
 
-        mockMvc.perform(put("/users")
+        mockMvc.perform(post("/users")
                         .content(mapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isCreated())
@@ -61,9 +59,6 @@ class UserControllerTest {
 
     @Test
     void create_shouldFailedBadPayload() throws Exception {
-        Long id = 1L;
-
-        Date dob =  Date.from(LocalDate.of(1992, 9, 8).atStartOfDay(ZoneId.systemDefault()).toInstant());
         CreateUserDto userDto = CreateUserDto.builder()
                 .build();
 
@@ -98,16 +93,7 @@ class UserControllerTest {
 
     @Test
     void get_shouldFailed() throws Exception{
-        Long id = 1L;
-
-        Date dob =  Date.from(LocalDate.of(1992, 9, 8).atStartOfDay(ZoneId.systemDefault()).toInstant());
-        GetUserDto userDto = GetUserDto.builder()
-                .id(id)
-                .birthday(dob)
-                .location("mérignac")
-                .sexe("MALE")
-                .username("alan")
-                .build();
+        long id = 1L;
 
         when(service.get(any(Long.class))).thenReturn(null);
 

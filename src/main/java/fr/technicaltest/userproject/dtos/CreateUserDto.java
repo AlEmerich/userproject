@@ -2,12 +2,16 @@ package fr.technicaltest.userproject.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import fr.technicaltest.userproject.enums.Gender;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateUserDto {
 
     @NotNull
@@ -15,6 +19,8 @@ public class CreateUserDto {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date birthday;
+
+    private String country;
 
     private String location;
 
@@ -36,6 +42,14 @@ public class CreateUserDto {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getLocation() {

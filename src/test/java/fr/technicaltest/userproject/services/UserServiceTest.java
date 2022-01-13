@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -39,6 +40,7 @@ class UserServiceTest {
                     LocalDate.of(1997, 1, 15)
                     .atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))
             .sexe(Gender.FEMALE)
+            .country("France")
             .location("Bordeaux")
             .build();
 
@@ -62,6 +64,17 @@ class UserServiceTest {
                 .username(mockUser.getUsername())
                 .sexe(mockUser.getSexe())
                 .birthday(new Date())
+                .location(mockUser.getLocation())
+                .build()));
+    }
+
+    @Test
+    void create_shouldFailedCountryNotFrance() {
+        assertThrows(BusinessException.class, () -> userService.create(CreateUserDto.builder()
+                .username(mockUser.getUsername())
+                .sexe(mockUser.getSexe())
+                .birthday(mockUser.getBirthday())
+                .country("NC")
                 .location(mockUser.getLocation())
                 .build()));
     }

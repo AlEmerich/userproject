@@ -19,8 +19,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @PutMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
     public ResponseEntity<Void> create(@RequestBody CreateUserDto userDto) {
         Long id = service.create(userDto);
 

@@ -34,6 +34,7 @@ class UserRepositoryTest {
                             .atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))
             .sexe(Gender.FEMALE)
             .phone("06 06 60 60 60")
+            .country("France")
             .location("Bordeaux")
             .build();
 
@@ -69,6 +70,13 @@ class UserRepositoryTest {
     @Test
     void saveUser_ShouldFailedBirthdayNull() {
         mockUser.setBirthday(null);
+        assertThrows(ConstraintViolationException.class,
+                () -> entityManager.persistAndFlush(mockUser));
+    }
+
+    @Test
+    void saveUser_ShouldFailedCountryNull() {
+        mockUser.setCountry(null);
         assertThrows(ConstraintViolationException.class,
                 () -> entityManager.persistAndFlush(mockUser));
     }

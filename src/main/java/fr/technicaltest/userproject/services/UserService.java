@@ -31,6 +31,11 @@ public class UserService {
         } else {
             throw new BusinessException("The birth date is mandatory");
         }
+
+        if(userEntity.getCountry() != null &&
+                !userEntity.getCountry().equalsIgnoreCase("france")) {
+            throw new BusinessException("Le pays doit être égale à France (insensible à la casse)");
+        }
     }
 
     @Transactional
@@ -38,6 +43,7 @@ public class UserService {
         UserEntity userEntity = new UserEntity();
         userEntity.setCreateDate(new Date());
         userEntity.setBirthday(userDto.getBirthday());
+        userEntity.setCountry(userDto.getCountry());
         userEntity.setLocation(userDto.getLocation());
         userEntity.setPhone(userDto.getPhone());
         userEntity.setSexe(userDto.getSexe());

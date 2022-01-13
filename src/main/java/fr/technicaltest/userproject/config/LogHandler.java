@@ -64,10 +64,13 @@ public class LogHandler {
                     joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
         }
         try {
+            long startTime = System.currentTimeMillis();
             Object result = joinPoint.proceed();
+            long endTime = System.currentTimeMillis();
+
             if (log.isDebugEnabled()) {
-                log.debug("Exit: {}.{}() with result = {}", joinPoint.getSignature().getDeclaringTypeName(),
-                        joinPoint.getSignature().getName(), result);
+                log.debug("Exit: {}.{}() in {}ms with result = {}", joinPoint.getSignature().getDeclaringTypeName(),
+                        joinPoint.getSignature().getName(), (endTime-startTime), result);
             }
             return result;
         } catch (IllegalArgumentException e) {

@@ -1,11 +1,15 @@
 package fr.technicaltest.userproject.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GetUserDto {
     private Long id;
 
@@ -13,6 +17,8 @@ public class GetUserDto {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date birthday;
+
+    private String country;
 
     private String location;
 
@@ -42,6 +48,14 @@ public class GetUserDto {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getLocation() {

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -34,6 +35,11 @@ public class UserEntity implements Serializable {
     @Column(nullable = false)
     @NotNull
     private Date birthday;
+
+    @Column(nullable = false)
+    @NotNull
+    @NotBlank
+    private String country;
 
     @Column(nullable = false)
     @NotBlank
@@ -75,6 +81,14 @@ public class UserEntity implements Serializable {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getLocation() {
